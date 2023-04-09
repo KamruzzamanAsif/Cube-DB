@@ -1,0 +1,58 @@
+-- BUILT IN CUBE
+SET STATISTICS TIME ON;
+
+SELECT continent, country, city, SUM(units_sold) AS total_sold
+FROM sales
+GROUP BY cube(continent, country, city)
+ORDER BY continent, country, city;
+
+SET STATISTICS TIME OFF;
+
+-- MANUAL CUBE
+SET STATISTICS TIME ON;
+
+SELECT NULL AS continent, NULL AS country, city, SUM(units_sold) AS units_sold
+FROM sales
+GROUP BY city 
+
+UNION ALL
+
+SELECT NULL AS continent, country, NULL AS city, SUM(units_sold) AS units_sold
+FROM sales
+GROUP BY country
+
+UNION ALL
+
+SELECT continent, NULL AS country, NULL AS city, SUM(units_sold) AS units_sold
+FROM sales
+GROUP BY continent
+
+UNION ALL
+
+SELECT continent, NULL AS country, city, SUM(units_sold) AS units_sold
+FROM sales
+GROUP BY continent, city 
+
+UNION ALL
+
+SELECT continent, country, NULL AS city, SUM(units_sold) AS units_sold
+FROM sales
+GROUP BY continent, country 
+
+UNION ALL
+
+SELECT NULL AS continent, country, city, SUM(units_sold) AS units_sold
+FROM sales
+WHERE continent='Asia' and units_sold>50
+GROUP BY country, city
+
+UNION ALL
+
+SELECT continent, country, city, sum(units_sold) as units_sold
+FROM sales
+GROUP BY continent, country, city;
+
+SET STATISTICS TIME OFF;
+
+-- WE NEED TO COMPARE THE BUILDING TIME OF BUILT-IN CUBE AND OUR MANUAL CUBE
+-- BUT PROBLEM IS, THE TIME REMAINS THE SAME...SOME FIX THE ISSUE

@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import * 
 from PyQt5.QtCore import *
 import ui_window
+from Backend import apriori
 import sys
 
 
@@ -12,19 +13,14 @@ class Home(QMainWindow):  # Home extends QMainWindow
         
         # store values in dictionary [BACKEND]
         self.inventory_items = []               # this will update when user add item into inventory from STOCK Tab
-        self.table_data = [
-            ('Apple', 5, '50%'), 
-            ('Banana', 10, '20%'),
-            ('Orange', 15, '10%'),
-            ('Grapes', 20, '5%'),
-            ('Mango', 25, '0%')
-        ]
+        self.transaction_list = []
+        self.table_data = apriori.updated_stock_data()
         
-
+        # initialization
         self.home = ui_window.Ui_MainWindow()
         self.home.setupUi(self) 
-                
         self.stock_page()
+        self.home.add_transaction_btn.clicked.connect(self.transaction_page)
         
     def stock_page(self):
         
@@ -32,7 +28,7 @@ class Home(QMainWindow):  # Home extends QMainWindow
         self.home.tabWidget.setCurrentIndex(0)
         
         # load the table with data
-        self.loadTable()
+        self.loadStockTable()
         
         # navigate the update inventory button click
         self.home.update_inventory_btn.clicked.connect(self.update_inventory)
@@ -43,7 +39,27 @@ class Home(QMainWindow):  # Home extends QMainWindow
         
     def transaction_page(self):
         
+        # set the current Tab
         self.home.tabWidget.setCurrentIndex(2)
+        
+        # get the text from the textboxes
+        self.product_names = self.home.product_names_edit.text().split(', ')
+        self.product_quantites = self.home.product_quant_edit.text().split(', ')
+        print(self.product_names)
+        print(self.product_quantites)
+        
+        # set the text into appriori algorithm
+        self.tempdict = {}
+        for name, quantity in zip(self.product_names, self.product_quantites):
+            self.tempdict[name] = int(quantity)
+            
+        self.transaction_list.append(self.tempdict)
+        
+        # sending data to [BACKEND]
+        apriori.addData(self.transaction_list)
+        self.loadStockTable()
+        
+        
                 
     def update_inventory(self):
         
@@ -56,9 +72,12 @@ class Home(QMainWindow):  # Home extends QMainWindow
         self.table_data[currentrow] = (currentRowValue[0], currentRowValue[1] + 1, currentRowValue[2])
         print(self.table_data,'\n')
         
-        self.home.reload_btn.clicked.connect(self.loadTable)
+        self.home.reload_btn.clicked.connect(self.loadStockTable)
         
-    def loadTable(self):
+    def loadStockTable(self):
+        
+        self.table_data = apriori.updated_stock_data()
+        print(self.table_data)
         
         # set value to the table
         columns = self.home.stockTable.columnCount()

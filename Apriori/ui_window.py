@@ -33,27 +33,55 @@ class Ui_MainWindow(object):
         self.gridLayout_4 = QtWidgets.QGridLayout(self.stock_tab)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.update_inventory_btn = QtWidgets.QPushButton(self.stock_tab)
+        self.update_inventory_btn.setMinimumSize(QtCore.QSize(0, 50))
         font = QtGui.QFont()
         font.setPointSize(15)
         self.update_inventory_btn.setFont(font)
-        self.update_inventory_btn.setStyleSheet("background-color: rgb(224, 122, 95);")
+        self.update_inventory_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.update_inventory_btn.setStyleSheet("QPushButton {\n"
+"background-color: rgb(224, 122, 95);\n"
+"color:  rgb(0, 43, 91);\n"
+"border-radius: 10px;\n"
+"}\n"
+"\n"
+"QPushButton::hover:!pressed {\n"
+"    \n"
+"    background-color: rgb(199, 107, 84);\n"
+"    color: rgb(0, 43, 91);\n"
+"\n"
+"}")
         self.update_inventory_btn.setObjectName("update_inventory_btn")
         self.gridLayout_4.addWidget(self.update_inventory_btn, 1, 0, 1, 1)
         self.reload_btn = QtWidgets.QPushButton(self.stock_tab)
+        self.reload_btn.setMinimumSize(QtCore.QSize(0, 50))
         font = QtGui.QFont()
         font.setPointSize(15)
         self.reload_btn.setFont(font)
-        self.reload_btn.setStyleSheet("background-color: rgb(224, 122, 95);")
+        self.reload_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.reload_btn.setStyleSheet("QPushButton {\n"
+"background-color: rgb(224, 122, 95);\n"
+"color:  rgb(0, 43, 91);\n"
+"border-radius: 10px;\n"
+"}\n"
+"\n"
+"QPushButton::hover:!pressed {\n"
+"    \n"
+"    background-color: rgb(199, 107, 84);\n"
+"    color: rgb(0, 43, 91);\n"
+"\n"
+"}")
         self.reload_btn.setObjectName("reload_btn")
         self.gridLayout_4.addWidget(self.reload_btn, 1, 1, 1, 1)
         self.stockTable = QtWidgets.QTableWidget(self.stock_tab)
         font = QtGui.QFont()
+        font.setPointSize(13)
         font.setBold(True)
         font.setWeight(75)
         self.stockTable.setFont(font)
         self.stockTable.setStyleSheet("QHeaderView::section {\n"
 "    background-color: #002B5B;\n"
 "    color: rgb(143, 227, 207);\n"
+"    font: 12pt \"Kalpurush\";\n"
 "}\n"
 "\n"
 "\n"
@@ -63,6 +91,7 @@ class Ui_MainWindow(object):
 "    gridline-color: rgb(255, 255, 255);\n"
 "    color: #fff;\n"
 "}")
+        self.stockTable.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.stockTable.setObjectName("stockTable")
         self.stockTable.setColumnCount(3)
         self.stockTable.setRowCount(1)
@@ -168,8 +197,19 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         self.add_transaction_btn.setFont(font)
-        self.add_transaction_btn.setStyleSheet("background-color: rgb(0, 43, 91);\n"
-"color: white;")
+        self.add_transaction_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.add_transaction_btn.setStyleSheet("QPushButton {\n"
+"background-color: rgb(0, 43, 91);\n"
+"color:  white;\n"
+"border-radius: 10px;\n"
+"}\n"
+"\n"
+"QPushButton::hover:!pressed {\n"
+"    \n"
+"    background-color:  rgb(0, 29, 61);\n"
+"    color: white;\n"
+"\n"
+"}")
         self.add_transaction_btn.setObjectName("add_transaction_btn")
         self.gridLayout_2.addWidget(self.add_transaction_btn, 4, 2, 1, 1)
         spacerItem8 = QtWidgets.QSpacerItem(313, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -189,6 +229,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.update_inventory_btn.setText(_translate("MainWindow", "Add Item in Inventory"))
         self.reload_btn.setText(_translate("MainWindow", "Reload Table"))
+        self.stockTable.setSortingEnabled(True)
         item = self.stockTable.verticalHeaderItem(0)
         item.setText(_translate("MainWindow", "1"))
         item = self.stockTable.horizontalHeaderItem(0)
@@ -196,7 +237,7 @@ class Ui_MainWindow(object):
         item = self.stockTable.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "Available Stock"))
         item = self.stockTable.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Confidence"))
+        item.setText(_translate("MainWindow", "Purchase Possibility"))
         __sortingEnabled = self.stockTable.isSortingEnabled()
         self.stockTable.setSortingEnabled(False)
         item = self.stockTable.item(0, 0)

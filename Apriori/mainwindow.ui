@@ -47,13 +47,33 @@
        <layout class="QGridLayout" name="gridLayout_4">
         <item row="1" column="0">
          <widget class="QPushButton" name="update_inventory_btn">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <pointsize>15</pointsize>
            </font>
           </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(224, 122, 95);</string>
+           <string notr="true">QPushButton {
+background-color: rgb(224, 122, 95);
+color:  rgb(0, 43, 91);
+border-radius: 10px;
+}
+
+QPushButton::hover:!pressed {
+	
+	background-color: rgb(199, 107, 84);
+	color: rgb(0, 43, 91);
+
+}</string>
           </property>
           <property name="text">
            <string>Add Item in Inventory</string>
@@ -62,13 +82,33 @@
         </item>
         <item row="1" column="1">
          <widget class="QPushButton" name="reload_btn">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <pointsize>15</pointsize>
            </font>
           </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(224, 122, 95);</string>
+           <string notr="true">QPushButton {
+background-color: rgb(224, 122, 95);
+color:  rgb(0, 43, 91);
+border-radius: 10px;
+}
+
+QPushButton::hover:!pressed {
+	
+	background-color: rgb(199, 107, 84);
+	color: rgb(0, 43, 91);
+
+}</string>
           </property>
           <property name="text">
            <string>Reload Table</string>
@@ -79,6 +119,7 @@
          <widget class="QTableWidget" name="stockTable">
           <property name="font">
            <font>
+            <pointsize>13</pointsize>
             <weight>75</weight>
             <bold>true</bold>
            </font>
@@ -87,6 +128,7 @@
            <string notr="true">QHeaderView::section {
 	background-color: #002B5B;
     color: rgb(143, 227, 207);
+	font: 12pt &quot;Kalpurush&quot;;
 }
 
 
@@ -96,6 +138,12 @@ QTableWidget {
 	gridline-color: rgb(255, 255, 255);
 	color: #fff;
 }</string>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
           </property>
           <attribute name="horizontalHeaderCascadingSectionResizes">
            <bool>true</bool>
@@ -141,7 +189,7 @@ QTableWidget {
           </column>
           <column>
            <property name="text">
-            <string>Confidence</string>
+            <string>Purchase Possibility</string>
            </property>
           </column>
           <item row="0" column="0">
@@ -411,9 +459,22 @@ font: 20pt &quot;Kalpurush&quot;;</string>
             <pointsize>13</pointsize>
            </font>
           </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(0, 43, 91);
-color: white;</string>
+           <string notr="true">QPushButton {
+background-color: rgb(0, 43, 91);
+color:  white;
+border-radius: 10px;
+}
+
+QPushButton::hover:!pressed {
+	
+	background-color:  rgb(0, 29, 61);
+	color: white;
+
+}</string>
           </property>
           <property name="text">
            <string>Add Transaction</string>

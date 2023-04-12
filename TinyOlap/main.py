@@ -16,6 +16,7 @@ def delta_percent(c: Cell):
 def elons_random_numbers(low: float = 1000.0, high: float = 2000.0):
     return random.uniform(low, high)
 
+
 # Purpose: Support Elon Musk on his business planning & reporting for Tesla
 def play_tesla(db, console_output: bool = True):
     # 1st - define an appropriate 5-dimensional cube (the data space)
@@ -56,7 +57,7 @@ def play_tesla(db, console_output: bool = True):
 
     # 6th - some minimal reporting
     print(View(cube).refresh().to_console_output())
-
+    
 
 # main program
 db = Database("tesla")
